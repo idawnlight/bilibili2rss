@@ -12,9 +12,9 @@ if (isset($_GET["id"])) {
     if ($SubmitVideos->data->count<5) {
         $count = $SubmitVideos->data->count;
     } elseif ($SubmitVideos->data->count == 0) {
-        echo json_encode(array("status"=>"401","msg"=>"No Submit Videos"));
+        echo json_encode(array("status"=>"400","msg"=>"No Submit Videos"));
         header("Content-Type:application/json; charset=utf-8");
-        header("HTTP/1.1 401 Unauthorized");
+        header("HTTP/1.1 400 Bad request");
         exit();
     } else {
         $count = 5;
@@ -29,7 +29,7 @@ if (isset($_GET["id"])) {
     date_default_timezone_set('Asia/Shanghai');
     require_once("./rss.php");
 } else {
-    echo json_encode(array("status"=>"400","msg"=>"Bad Request"));
+    echo json_encode(array("status"=>"400","msg"=>"Need id"));
     header("Content-Type:application/json; charset=utf-8");
     header("HTTP/1.1 400 Bad request");
     exit();
